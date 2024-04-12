@@ -41,12 +41,9 @@ public class AirportController {
 		repo.save(a);
 		return "Airport details updated successfully";
 	}
-	
 	@DeleteMapping("/airport/{id}")
 	public void deleteAirport(@PathVariable int id) {
-		
 		repo.deleteById(id);
-		
 	}
 	
 	@GetMapping("/airport/{id}")

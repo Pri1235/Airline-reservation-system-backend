@@ -1,8 +1,15 @@
 package com.example.demo.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -21,8 +28,27 @@ public class Aircraft {
 	@Column(name = "Model")
 	private String model;
 	
+	public Aircraft(int aircraft_id, String make, String model, int capacity, List<Flight> flights) {
+		super();
+		this.aircraft_id = aircraft_id;
+		this.make = make;
+		this.model = model;
+		this.capacity = capacity;
+		this.flights = flights;
+	}
+	public List<Flight> getFlights() {
+		return flights;
+	}
+	public void setFlights(List<Flight> flights) {
+		this.flights = flights;
+	}
 	@Column(name = "Capacity")
 	private int capacity;
+	
+	
+	
+	@OneToMany(mappedBy = "aircraft_id",targetEntity = Flight.class,cascade = CascadeType.ALL)
+    private List<Flight> flights = new ArrayList<>();
 	
 	public int getAircraft_id() {
 		return aircraft_id;
