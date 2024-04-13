@@ -31,14 +31,14 @@ public class FlightController {
 	 @Autowired
 	    IFlightServices flightService;
 
-	    @DeleteMapping("/delete/{flightId}")
+	    @DeleteMapping("/{flightId}")
 	    public ResponseEntity<Object> deleteFlight(@PathVariable int flightId) {
 	            flightService.deleteFlight(flightId);
 	            return new ResponseEntity<>("Deleted Flight from Records Successfully!", HttpStatus.OK);
 	       
 	    }
 
-	    @GetMapping("/get/{flightId}")
+	    @GetMapping("/{flightId}")
 	    public ResponseEntity<Object> findByFlightId(@PathVariable int flightId) {
 	         return new ResponseEntity<>(flightService.findByFlightId(flightId), HttpStatus.OK);
 	    }
@@ -68,7 +68,7 @@ public class FlightController {
 	            return new ResponseEntity<>("Flight added successfully!", HttpStatus.OK);
 	    }
 
-	    @PutMapping("/update/{flightId}")
+	    @PutMapping("/{flightId}")
 	    public ResponseEntity<Object> updateFlight(@PathVariable int flightId,
 	                                                @RequestBody FlightDTO flightDTO, BindingResult bindingResult) throws Exception {
 	        if (bindingResult.hasErrors()) {
@@ -87,7 +87,7 @@ public class FlightController {
 	       
 	    }
 	    
-	    @GetMapping("/airline_id/{airline_id}")
+	    @GetMapping("/{airline_id}")
 	    public List<FlightDTO> listFlightsbyAirline(@PathVariable int airline_id){
 	    	return flightService.listFlightsByAirlineId(airline_id);
 	    }

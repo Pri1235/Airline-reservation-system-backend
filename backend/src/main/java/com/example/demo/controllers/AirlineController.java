@@ -13,46 +13,50 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.AircraftDTO;
+import com.example.demo.dto.AirlineDTO;
+import com.example.demo.entities.Aircraft;
 import com.example.demo.entities.Airline;
 import com.example.demo.repositories.AirlineRepo;
+import com.example.demo.services.IAircraftServices;
+import com.example.demo.services.IAirlineServices;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
 public class AirlineController {
 
 	@Autowired
-	AirlineRepo repo;
-	
-	@GetMapping("/airlines")
-	public List<Airline> getAllAirlines(){
-		return repo.findAll();
-	}
-	
-	@PostMapping("/airline")
-	public Airline addAirline(@RequestBody Airline a){
-		return repo.save(a);
-	}
-	
-	@PutMapping("/airline")
-	public String updateAirline(@RequestBody Airline a) {
-		if(!repo.existsById(a.getAirlineId())) {
-			return "No such airline record found.";
-		}
-		repo.save(a);
-		return "Airline details updated successfully";
-	}
-	
-	@DeleteMapping("/airline/{id}")
-	public String deleteAirline(@PathVariable int id) {
-		if(!repo.existsById(id)) {
-			return "No such airline record found.";
-		}
-		repo.deleteById(id);
-		return "Airline deleted successfully";
-	}
-	
-	@GetMapping("/airline/{id}")
-	public Optional<Airline> getAirlineById(@PathVariable int id) {
-		return repo.findById(id);
-	}
+    private IAirlineServices airlineRepo;
+
+ 
+    @GetMapping("airline/get/all")
+    public List<AirlineDTO> getAllAirline() {
+        return airlineRepo.listAllAirline();
+    }
+
+    @PostMapping("airline/add")
+    public Airline insertAirline(@RequestBody AirlineDTO airlineDTO) {
+        return airlineRepo.addAirline(airlineDTO);
+    }
+
+    @PutMapping("airline/{id}")
+    public Airline updateAirline(@PathVariable int id, @RequestBody AirlineDTO airlineDTO) {
+        Airline updatedAirline = airlineRepo.updateAirline(id, airlineDTO);
+        if (updatedAirline != null) {
+            return updatedAirline;
+        } else {
+           
+            return null;
+        }
+    }
+
+    @DeleteMapping("airline/{id}")
+    public void deleteAirline(@PathVariable int id) {
+        airlineRepo.deleteAirline(id);
+    }
+
+    @GetMapping("airline/{id}")
+    public AirlineDTO getAirlineById(@PathVariable int id) {
+        return airlineRepo.findByAirlineId(id);
+    }
 }

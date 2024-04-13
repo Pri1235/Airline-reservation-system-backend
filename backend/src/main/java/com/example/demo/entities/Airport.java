@@ -8,8 +8,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class Airport {
@@ -17,6 +20,8 @@ public class Airport {
 	
 	@Id
 	@Column(name = "AIRPORT_ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "airport_sequence")
+    @SequenceGenerator(name = "airport_sequence", sequenceName = "airport_sequence", allocationSize = 1)
     private int Airport_id;
     private String name;
     private String code;

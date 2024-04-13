@@ -13,42 +13,47 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.AirportDTO;
 import com.example.demo.entities.Airport;
 import com.example.demo.repositories.AirportRepo;
+import com.example.demo.services.IAirportServices;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
 public class AirportController {
 	
-	
-	@Autowired
-	AirportRepo repo;
-	
-	@GetMapping("/airports")
-	public List<Airport> getAllAirports(){
-		return repo.findAll();
-	}
-	
-	@PostMapping("/airport")
-	public Airport addAirport(@RequestBody Airport a){
-		return repo.save(a);
-	}
-	@PutMapping("/airport")
-	public String updateAirport(@RequestBody Airport a) {
-		if(!repo.existsById(a.getAirport_id())) {
-			return "No airport record found.";
-		}
-		repo.save(a);
-		return "Airport details updated successfully";
-	}
-	@DeleteMapping("/airport/{id}")
-	public void deleteAirport(@PathVariable int id) {
-		repo.deleteById(id);
-	}
-	
-	@GetMapping("/airport/{id}")
-	public Optional<Airport> getAiportById(@PathVariable int id) {
-		return repo.findById(id);
-	}
+	 @Autowired
+	    private IAirportServices airportService;
+
+	    @GetMapping("airport/get/all")
+	    public List<AirportDTO> getAllAirports() {
+	        return airportService.listAllAirport();
+	    }
+
+	    @PostMapping("airport/add")
+	    public Airport insertAirport(@RequestBody AirportDTO airportDTO) {
+	        return airportService.addAirport(airportDTO);
+	    }
+
+	    @PutMapping("airport/{id}")
+	    public Airport updateAirport(@PathVariable int id, @RequestBody AirportDTO airportDTO) {
+	        Airport updatedAirport = airportService.updateAirport(id, airportDTO);
+	        if (updatedAirport != null) {
+	            return updatedAirport;
+	        } else {
+	            // Handle the case where the airport with the given ID doesn't exist
+	            return null;
+	        }
+	    }
+
+	    @DeleteMapping("airport/{id}")
+	    public void deleteAirport(@PathVariable int id) {
+	        airportService.deleteAirport(id);
+	    }
+
+	    @GetMapping("airport/{id}")
+	    public AirportDTO getAirportById(@PathVariable int id) {
+	        return airportService.findByAirportId(id);
+	    }
 
 }

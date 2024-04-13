@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,6 +20,8 @@ import jakarta.persistence.Table;
 public class Airline {
 	@Id
     @Column(name = "AIRLINE_ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "airline_sequence")
+    @SequenceGenerator(name = "airline_sequence", sequenceName = "airline_sequence", allocationSize = 1)
     private int airlineId;
 
     @Column(name = "AIRLINE_NAME", nullable = false, unique = true)
