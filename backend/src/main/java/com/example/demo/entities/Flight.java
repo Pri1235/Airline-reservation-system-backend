@@ -50,6 +50,8 @@ public class Flight {
 
 	@OneToOne(mappedBy = "flight", targetEntity = Trip.class,cascade = CascadeType.ALL)
 	private Trip trip;
+	
+	
 
 	public Flight(int flight_id, String flight_name, int flight_number, Airline airlineId, Aircraft aircraft_id,
 			Trip trip) {

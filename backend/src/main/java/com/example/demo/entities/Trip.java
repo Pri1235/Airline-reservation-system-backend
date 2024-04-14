@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +27,9 @@ public class Trip {
     @OneToOne(targetEntity = Flight.class)
     @JoinColumn(name = "flight_id")
     private Flight flight;
+    
+    @OneToOne(mappedBy = "trip", targetEntity = Booking.class,cascade = CascadeType.ALL)
+	private Booking booking;
 
     @Column(name = "departure_date_time")
     private LocalDateTime departureDateTime;
@@ -43,10 +47,19 @@ public class Trip {
 
     @Column(name = "cost")
     private float cost;
-
+    
+    
     
 
-    public int getTripId() {
+    public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
+
+	public int getTripId() {
 		return trip_id;
 	}
 
