@@ -2,6 +2,7 @@ package com.example.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -45,6 +47,30 @@ public class Flight {
 	@ManyToOne(targetEntity = Aircraft.class)
 	@JoinColumn(name = "aircraft_id")
 	private Aircraft aircraft_id;
+
+	@OneToOne(mappedBy = "flight", targetEntity = Trip.class,cascade = CascadeType.ALL)
+	private Trip trip;
+
+	public Flight(int flight_id, String flight_name, int flight_number, Airline airlineId, Aircraft aircraft_id,
+			Trip trip) {
+		super();
+		this.flight_id = flight_id;
+		this.flight_name = flight_name;
+		this.flight_number = flight_number;
+		this.airlineId = airlineId;
+		this.aircraft_id = aircraft_id;
+		this.trip = trip;
+	}
+
+
+	public Trip getTrip() {
+		return trip;
+	}
+
+
+	public void setTrip(Trip trip) {
+		this.trip = trip;
+	}
 
 
 	public int getFlight_id() {
@@ -103,18 +129,6 @@ public class Flight {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
-	public Flight(int flight_id, String flight_name, int flight_number,Airline airlineId, Aircraft aircraft_id) {
-		super();
-		this.flight_id = flight_id;
-		this.flight_name = flight_name;
-		this.flight_number = flight_number;
-		this.airlineId = airlineId;
-		this.aircraft_id = aircraft_id;
-	}
-
-
 	
 	
 }

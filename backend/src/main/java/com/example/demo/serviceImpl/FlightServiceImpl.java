@@ -29,7 +29,7 @@ public class FlightServiceImpl implements IFlightServices {
 	    public Flight addFlight(FlightDTO flightDTO) {
 	        if (airlineDao.existsById(flightDTO.getAirline_id()) && aircraftDao.existsById(flightDTO.getAircraft_id())) {
 	            Flight flight = new Flight();
-	         
+	            flight.setFlight_id(flightDTO.getFlight_id());
 	            flight.setFlight_name(flightDTO.getFlight_name());
 	            flight.setFlight_number(flightDTO.getFlight_number());
 	            flight.setAirlineId(airlineDao.findById(flightDTO.getAirline_id()).get());
@@ -69,6 +69,7 @@ public class FlightServiceImpl implements IFlightServices {
 	    public Flight updateFlight(int flightId, FlightDTO flightDTO) {
 	        if (flightDao.existsById(flightId) && airlineDao.existsById(flightDTO.getAirline_id()) && aircraftDao.existsById(flightDTO.getAircraft_id())) {
 	            Flight flight = flightDao.findById(flightId).get();
+	            flight.setFlight_id(flightDTO.getFlight_id());
 	            flight.setFlight_name(flightDTO.getFlight_name());
 	            flight.setFlight_number(flightDTO.getFlight_number());
 	            flight.setAirlineId(airlineDao.findById(flightDTO.getAirline_id()).get());

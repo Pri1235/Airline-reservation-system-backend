@@ -12,9 +12,9 @@ import com.example.demo.entities.Aircraft;
 
 @Repository
 public interface AircraftRepository extends JpaRepository<Aircraft,Integer> {
-	 @Query("SELECT new com.example.demo.dto.AircraftDTO(a.make, a.model, a.capacity) FROM Aircraft a WHERE a.aircraft_id = :aircraftId")
+	 @Query("SELECT new com.example.demo.dto.AircraftDTO(a.aircraft_id,a.make, a.model, a.capacity) FROM Aircraft a WHERE a.aircraft_id = :aircraftId")
 	    AircraftDTO findByAircraftId(@Param("aircraftId") int aircraftId);
 
-	 @Query("SELECT new com.example.demo.dto.AircraftDTO(a.make, a.model, a.capacity) FROM Aircraft a ORDER BY a.aircraft_id")
+	 @Query("SELECT new com.example.demo.dto.AircraftDTO(a.aircraft_id,a.make, a.model, a.capacity) FROM Aircraft a ORDER BY a.aircraft_id")
 	  	List<AircraftDTO> listAllAircraft();
 }

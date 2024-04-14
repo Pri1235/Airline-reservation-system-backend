@@ -23,6 +23,7 @@ public class AircraftServiceImpl implements IAircraftServices {
 	    @Override
 	    public Aircraft addAircraft(AircraftDTO aircraftDTO) {
 	        Aircraft aircraft = new Aircraft();
+	        aircraft.setAircraft_id(aircraftDTO.getAircraft_id());
 	        aircraft.setMake(aircraftDTO.getMake());
 	        aircraft.setModel(aircraftDTO.getModel());
 	        aircraft.setCapacity(aircraftDTO.getCapacity());
@@ -41,7 +42,7 @@ public class AircraftServiceImpl implements IAircraftServices {
 	    public AircraftDTO findByAircraftId(int aircraftId) {
 	        Aircraft aircraft = aircraftDao.findById(aircraftId).orElse(null);
 	        if (aircraft != null) {
-	            return new AircraftDTO(aircraft.getMake(), aircraft.getModel(), aircraft.getCapacity());
+	            return new AircraftDTO(aircraft.getAircraft_id(),aircraft.getMake(), aircraft.getModel(), aircraft.getCapacity());
 	        }
 	        return null;
 	    }
@@ -55,6 +56,7 @@ public class AircraftServiceImpl implements IAircraftServices {
 	    public Aircraft updateAircraft(int aircraftId, AircraftDTO aircraftDTO) {
 	        if (aircraftDao.existsById(aircraftId)) {
 	            Aircraft aircraft = aircraftDao.findById(aircraftId).get();
+	            aircraft.setAircraft_id(aircraftDTO.getAircraft_id());
 	            aircraft.setMake(aircraftDTO.getMake());
 	            aircraft.setModel(aircraftDTO.getModel());
 	            aircraft.setCapacity(aircraftDTO.getCapacity());

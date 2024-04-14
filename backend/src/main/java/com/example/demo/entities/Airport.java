@@ -28,8 +28,27 @@ public class Airport {
     private String location;
     
     
+    @OneToMany(mappedBy = "fromAirport",targetEntity = Trip.class,cascade = CascadeType.ALL)
+    private List<Trip> SourceTrip;
     
-    public int getAirport_id() {
+    @OneToMany(mappedBy = "toAirport",targetEntity = Trip.class,cascade = CascadeType.ALL)
+    private List<Trip> DestinationTrip;
+    
+    
+    
+    public List<Trip> getSourceTrip() {
+		return SourceTrip;
+	}
+	public void setSourceTrip(List<Trip> sourceTrip) {
+		SourceTrip = sourceTrip;
+	}
+	public List<Trip> getDestinationTrip() {
+		return DestinationTrip;
+	}
+	public void setDestinationTrip(List<Trip> destinationTrip) {
+		DestinationTrip = destinationTrip;
+	}
+	public int getAirport_id() {
         return Airport_id;
     }
     public void setAirport_id(int airport_id) {
@@ -54,12 +73,16 @@ public class Airport {
         this.location = location;
     }
 	
-	public Airport(int airport_id, String name, String code, String location) {
+	
+	public Airport(int airport_id, String name, String code, String location, List<Trip> sourceTrip,
+			List<Trip> destinationTrip) {
 		super();
 		Airport_id = airport_id;
 		this.name = name;
 		this.code = code;
 		this.location = location;
+		SourceTrip = sourceTrip;
+		DestinationTrip = destinationTrip;
 	}
 	public Airport() {
 		super();

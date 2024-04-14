@@ -14,9 +14,9 @@ import com.example.demo.entities.Airline;
 
 @Repository
 public interface AirlineRepo extends JpaRepository<Airline, Integer>{
-	@Query("SELECT new com.example.demo.dto.AirlineDTO(a.name, a.isFunctional) FROM Airline a WHERE a.airlineId = :airlineId")
+	@Query("SELECT new com.example.demo.dto.AirlineDTO(a.airlineId ,a.name, a.isFunctional) FROM Airline a WHERE a.airlineId = :airlineId")
 	AirlineDTO findByAirlineId(@Param("airlineId") int airlineId);
 
-	    @Query("SELECT new com.example.demo.dto.AirlineDTO(a.name,a.isFunctional) FROM Airline a ORDER BY a.airlineId")
+	    @Query("SELECT new com.example.demo.dto.AirlineDTO(a.airlineId,a.name,a.isFunctional) FROM Airline a ORDER BY a.airlineId")
 	    List<AirlineDTO> listAllAirlines();
 }

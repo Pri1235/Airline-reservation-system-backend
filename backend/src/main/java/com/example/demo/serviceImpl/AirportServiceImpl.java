@@ -21,6 +21,7 @@ public class AirportServiceImpl implements IAirportServices {
     @Override
     public Airport addAirport(AirportDTO airportDTO) {
         Airport airport = new Airport();
+        airport.setAirport_id(airportDTO.getAirport_id());
         airport.setName(airportDTO.getName());
         airport.setCode(airportDTO.getCode());
         airport.setLocation(airportDTO.getLocation());
@@ -39,7 +40,7 @@ public class AirportServiceImpl implements IAirportServices {
     public AirportDTO findByAirportId(int airportId) {
         Airport airport = airportDao.findById(airportId).orElse(null);
         if (airport != null) {
-            return new AirportDTO(airport.getName(), airport.getCode(), airport.getLocation());
+            return new AirportDTO(airport.getAirport_id(),airport.getName(), airport.getCode(), airport.getLocation());
         }
         return null;
     }
@@ -53,6 +54,7 @@ public class AirportServiceImpl implements IAirportServices {
     public Airport updateAirport(int airportId, AirportDTO airportDTO) {
         if (airportDao.existsById(airportId)) {
             Airport airport = airportDao.findById(airportId).get();
+            airport.setAirport_id(airportDTO.getAirport_id());
             airport.setName(airportDTO.getName());
             airport.setCode(airportDTO.getCode());
             airport.setLocation(airportDTO.getLocation());

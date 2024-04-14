@@ -12,7 +12,15 @@ public class AirportDTO {
     private String name;
     private String code;
     private String location;
+    
+    private int Airport_id;
 	
+	public int getAirport_id() {
+		return Airport_id;
+	}
+	public void setAirport_id(int airport_id) {
+		this.Airport_id = airport_id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -31,8 +39,9 @@ public class AirportDTO {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public AirportDTO(String name, String code, String location) {
+	public AirportDTO(int airport_id,String name, String code, String location) {
 		super();
+		this.Airport_id = airport_id;
 		this.name = name;
 		this.code = code;
 		this.location = location;

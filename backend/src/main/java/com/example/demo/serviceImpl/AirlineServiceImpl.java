@@ -20,6 +20,7 @@ public class AirlineServiceImpl implements IAirlineServices {
 	@Override
 	public Airline addAirline(AirlineDTO airlineDTO) {
 	    Airline airline = new Airline();
+	    airline.setAirlineId(airlineDTO.getAirlineId());
 	    airline.setName(airlineDTO.getName());
 	    airline.setFunctional(airlineDTO.getisFunctional());
 	    return airlineDao.save(airline);
@@ -36,7 +37,7 @@ public class AirlineServiceImpl implements IAirlineServices {
 	public AirlineDTO findByAirlineId(int airlineId) {
 	    Airline airline = airlineDao.findById(airlineId).orElse(null);
 	    if (airline != null) {
-	        return new AirlineDTO(airline.getName(), airline.isFunctional());
+	        return new AirlineDTO(airline.getAirlineId() ,airline.getName(), airline.isFunctional());
 	    }
 	    return null;
 	}
@@ -50,6 +51,7 @@ public class AirlineServiceImpl implements IAirlineServices {
 	public Airline updateAirline(int airlineId, AirlineDTO airlineDTO) {
 	    if (airlineDao.existsById(airlineId)) {
 	        Airline airline = airlineDao.findById(airlineId).get();
+	        airline.setAirlineId(airlineDTO.getAirlineId());
 	        airline.setName(airlineDTO.getName());
 	        airline.setFunctional(airlineDTO.getisFunctional());
 	        return airlineDao.save(airline);

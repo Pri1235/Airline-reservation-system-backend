@@ -12,9 +12,9 @@ import com.example.demo.entities.Airport;
 
 @Repository
 public interface AirportRepo extends JpaRepository<Airport,Integer> {
-	@Query("SELECT new com.example.demo.dto.AirportDTO(a.name, a.code, a.location) FROM Airport a WHERE a.Airport_id = :airportId")
+	@Query("SELECT new com.example.demo.dto.AirportDTO(a.Airport_id,a.name, a.code, a.location) FROM Airport a WHERE a.Airport_id = :airportId")
 	AirportDTO findByAirportId(@Param("airportId") int airportId);
 
-	    @Query("SELECT new com.example.demo.dto.AirportDTO(a.name, a.code, a.location) FROM Airport a ORDER BY a.Airport_id")
+	    @Query("SELECT new com.example.demo.dto.AirportDTO(a.Airport_id,a.name, a.code, a.location) FROM Airport a ORDER BY a.Airport_id")
 	    List<AirportDTO> listAllAirports();
 }
