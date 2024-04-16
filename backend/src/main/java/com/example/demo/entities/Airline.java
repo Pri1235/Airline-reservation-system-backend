@@ -22,7 +22,7 @@ public class Airline {
     @Column(name = "AIRLINE_ID")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "airline_sequence")
     @SequenceGenerator(name = "airline_sequence", sequenceName = "airline_sequence", allocationSize = 1)
-    private int airlineId;
+    private int airline_id;
 
     @Column(name = "AIRLINE_NAME", nullable = false, unique = true)
     private String name;
@@ -30,16 +30,16 @@ public class Airline {
     @Column(name = "IsFunctional")
     private boolean isFunctional;
     
-    @OneToMany(mappedBy = "airlineId",targetEntity = Flight.class,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "airline_id",targetEntity = Flight.class,cascade = CascadeType.ALL)
     private List<Flight> flights = new ArrayList<>();
 
 	public int getAirlineId() {
-		return airlineId;
+		return airline_id;
 	}
 
 	public Airline(int airlineId, String name, boolean isFunctional, List<Flight> flights) {
 		super();
-		this.airlineId = airlineId;
+		this.airline_id = airlineId;
 		this.name = name;
 		this.isFunctional = isFunctional;
 		this.flights = flights;
@@ -51,7 +51,7 @@ public class Airline {
 	}
 
 	public void setAirlineId(int airlineId) {
-		this.airlineId = airlineId;
+		this.airline_id = airlineId;
 	}
 
 	public String getName() {

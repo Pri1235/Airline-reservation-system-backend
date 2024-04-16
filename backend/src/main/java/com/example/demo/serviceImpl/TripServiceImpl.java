@@ -66,11 +66,13 @@ public class TripServiceImpl implements ITripServices {
 
 	    @Override
 	    public Trip updateTrip(int tripId, TripDTO tripDTO) {
+	    	System.out.println(tripDTO.getFlightId());
+	    	System.out.println(flightRepo.findByFlightId(tripDTO.getFlightId()));
 	    	if (airportRepo.existsById(tripDTO.getFromAirportId()) && airportRepo.existsById(tripDTO.getToAirportId()) && flightRepo.existsById(tripDTO.getFlightId())) {
 	            Trip trip = tripRepo.findById(tripId).orElse(null);
 	            if (trip != null) 
 	            {
-	            	trip.setTripId(tripDTO.getTrip_id());
+	            	trip.setTripId(tripId);
 	            	trip.setArrivalDateTime(tripDTO.getArrivalDateTime());
 	 	            trip.setCost(tripDTO.getCost());
 	 	            trip.setDepartureDateTime(tripDTO.getDepartureDateTime());

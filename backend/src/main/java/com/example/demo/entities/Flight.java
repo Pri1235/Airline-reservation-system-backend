@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -28,7 +29,7 @@ public class Flight {
 	@Override
 	public String toString() {
 		return "Flight [flight_id=" + flight_id + ", flight_name=" + flight_name + ", flight_number=" + flight_number
-				+ ", airlineId=" + airlineId + ", aircraft_id=" + aircraft_id + "]";
+				+ ", airlineId=" + airline_id + ", aircraft_id=" + aircraft_id + "]";
 	}
 
 
@@ -41,7 +42,7 @@ public class Flight {
 	
 	@ManyToOne(targetEntity = Airline.class)
 	@JoinColumn(name = "Airline_id")
-	private Airline airlineId;
+	private Airline airline_id;
 	
 	
 	@ManyToOne(targetEntity = Aircraft.class)
@@ -59,7 +60,7 @@ public class Flight {
 		this.flight_id = flight_id;
 		this.flight_name = flight_name;
 		this.flight_number = flight_number;
-		this.airlineId = airlineId;
+		this.airline_id = airlineId;
 		this.aircraft_id = aircraft_id;
 		this.trip = trip;
 	}
@@ -108,12 +109,12 @@ public class Flight {
 
 
 	public Airline getAirlineId() {
-		return airlineId;
+		return airline_id;
 	}
 
 
 	public void setAirlineId(Airline airlineId) {
-		this.airlineId = airlineId;
+		this.airline_id = airlineId;
 	}
 
 

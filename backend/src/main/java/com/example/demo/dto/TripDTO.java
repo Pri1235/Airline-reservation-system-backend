@@ -32,8 +32,8 @@ public class TripDTO {
 	public int getFlightId() {
 		return flight_id;
 	}
-	public void setFlightId(int flightId) {
-		this.flight_id = flightId;
+	public void setFlightId(int flight_id) {
+		this.flight_id = flight_id;
 	}
 	public LocalDateTime getDepartureDateTime() {
 		return departureDateTime;
@@ -69,11 +69,11 @@ public class TripDTO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TripDTO(Integer tripId,int flightId, LocalDateTime departureDateTime, LocalDateTime arrivalDateTime,
+	public TripDTO(Integer tripId,int flight_id, LocalDateTime departureDateTime, LocalDateTime arrivalDateTime,
 			int fromAirportId, int toAirportId, float cost) {
 		super();
 		this.trip_id = tripId;
-		this.flight_id = flightId;
+		this.flight_id = flight_id;
 		this.departureDateTime = departureDateTime;
 		this.arrivalDateTime = arrivalDateTime;
 		this.fromAirportId = fromAirportId;

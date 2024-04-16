@@ -23,7 +23,7 @@ public class FlightDTO {
 	
 	private int flight_number;
 	
-	private int airlineId;
+	private int airline_id;
 	
 	private int aircraft_id;
 
@@ -45,11 +45,11 @@ public class FlightDTO {
 	}
 
 	public int getAirline_id() {
-		return airlineId;
+		return airline_id;
 	}
 
 	public void setAirline_id(int airlineId) {
-		this.airlineId = airlineId;
+		this.airline_id = airlineId;
 	}
 
 	public FlightDTO(int flight_id, String flight_name, int flight_number, int airlineId, int aircraft_id) {
@@ -57,7 +57,7 @@ public class FlightDTO {
 		this.flight_id = flight_id;
 		this.flight_name = flight_name;
 		this.flight_number = flight_number;
-		this.airlineId = airlineId;
+		this.airline_id = airlineId;
 		this.aircraft_id = aircraft_id;
 	}
 
@@ -72,11 +72,11 @@ public class FlightDTO {
 	 public FlightDTO(String flightName, Integer flightNumber, Integer airlineId, Integer aircraftId) {
 		 
 		 	if(airlineId == null || aircraftId == null) {
-		 		this.airlineId = 0;
+		 		this.airline_id = 0;
 		 		this.aircraft_id = 0;
 		 	}
 		 	else {
-		 		this.airlineId = airlineId;
+		 		this.airline_id = airlineId;
 		        this.aircraft_id = aircraftId;
 		 	}
 		 	
@@ -93,7 +93,7 @@ public class FlightDTO {
 	@Override
 	public String toString() {
 		return "FlightDTO [flight_id=" + flight_id + ", flight_name=" + flight_name + ", flight_number=" + flight_number
-				+ ", airlineId=" + airlineId + ", aircraft_id=" + aircraft_id + "]";
+				+ ", airline_id=" + airline_id + ", aircraft_id=" + aircraft_id + "]";
 	}
 	
 	

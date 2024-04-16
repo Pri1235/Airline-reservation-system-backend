@@ -127,4 +127,27 @@ public class Trip {
         this.cost = cost;
     }
 
+	public int getTrip_id() {
+		return trip_id;
+	}
+
+	public void setTrip_id(int trip_id) {
+		this.trip_id = trip_id;
+	}
+
+	public Trip(int trip_id, Flight flight, Booking booking, LocalDateTime departureDateTime,
+			LocalDateTime arrivalDateTime, Airport fromAirport, Airport toAirport, float cost) {
+		super();
+		this.trip_id = trip_id;
+		this.flight = flight;
+		this.booking = booking;
+		this.departureDateTime = departureDateTime;
+		this.arrivalDateTime = arrivalDateTime;
+		this.fromAirport = fromAirport;
+		this.toAirport = toAirport;
+		this.cost = cost;
+	}
+    
+    
+
 }

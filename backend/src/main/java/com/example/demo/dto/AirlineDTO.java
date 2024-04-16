@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AirlineDTO {
-	private int airlineId;
+	private int airline_id;
 	private String name;
 	private boolean isFunctional;
 	public String getName() {
@@ -18,10 +18,10 @@ public class AirlineDTO {
 		this.name = name;
 	}
 	public int getAirlineId() {
-		return airlineId;
+		return airline_id;
 	}
 	public void setAirlineId(int airlineId) {
-		this.airlineId = airlineId;
+		this.airline_id = airlineId;
 	}
 	public boolean getisFunctional() {
 		return isFunctional;
@@ -31,7 +31,7 @@ public class AirlineDTO {
 	}
 	public AirlineDTO(int airline_id,String name, boolean isFunctional) {
 		super();
-		this.airlineId = airline_id;
+		this.airline_id = airline_id;
 		this.name = name;
 		this.isFunctional = isFunctional;
 	}
