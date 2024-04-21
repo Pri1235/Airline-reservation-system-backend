@@ -20,4 +20,5 @@ public interface IAirportServices {
 	public List<AirportDTO> listAllAirport();
 
 	public Airport updateAirport(int airport_id, AirportDTO airportDTO);
+	 public List<Integer> findAirportIdByCode(String airportCode);
 }

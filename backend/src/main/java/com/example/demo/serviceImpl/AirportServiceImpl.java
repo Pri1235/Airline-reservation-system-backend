@@ -1,6 +1,7 @@
 package com.example.demo.serviceImpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,5 +62,12 @@ public class AirportServiceImpl implements IAirportServices {
             return airportDao.save(airport);
         }
         return null;
+    }
+    
+   
+
+    @Override
+    public List<Integer> findAirportIdByCode(String airportCode) {
+        return airportDao.findAirportIdsByCode(airportCode);
     }
 }

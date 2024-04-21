@@ -55,5 +55,8 @@ public class AirportController {
 	    public AirportDTO getAirportById(@PathVariable int id) {
 	        return airportService.findByAirportId(id);
 	    }
-
+	    @GetMapping("airport/code/{code}")
+	    public List<Integer> getAirportIdByCode(@PathVariable String code) {
+	        return airportService.findAirportIdByCode(code);
+	    }
 }

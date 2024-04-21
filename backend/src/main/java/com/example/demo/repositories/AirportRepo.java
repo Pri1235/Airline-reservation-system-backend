@@ -17,4 +17,7 @@ public interface AirportRepo extends JpaRepository<Airport,Integer> {
 
 	    @Query("SELECT new com.example.demo.dto.AirportDTO(a.Airport_id,a.name, a.code, a.location) FROM Airport a ORDER BY a.Airport_id")
 	    List<AirportDTO> listAllAirports();
+	    
+	    @Query("SELECT a.Airport_id FROM Airport a WHERE a.code = :airportCode")
+	    List<Integer> findAirportIdsByCode(@Param("airportCode") String airportCode);
 }
